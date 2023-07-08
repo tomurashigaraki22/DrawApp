@@ -39,14 +39,24 @@ function MainContainer() {
         tabBarLabelStyle: {
           textAlign: 'center',
         },
+        headerStyle: {
+          backgroundColor: 'white',
+        },
+        headerTintColor: 'black', // Set the header text color to white
+        tabBarStyle: {
+          backgroundColor: 'white',
+        },
         activeTintColor: 'tomato',
         inactiveTintColor: 'grey',
         labelStyle: { paddingBottom: 10, fontSize: 10 },
-        style: { padding: 20, height: 70 }
-      })}
-    >
+        style: { padding: 20, height: 70 },
+  })}
+>
+  {/* Tab.Screen definitions */}
       <Tab.Screen name={homeName} component={HomeScreen} />
-      <Tab.Screen name={searchName} component={SearchScreen} />
+      <Tab.Screen name={searchName} component={SearchScreen} options={{
+            headerShown: false, // Hide the top status bar with back arrow
+          }}/>
       <Tab.Screen name={popName} component={PopularScreen} />
     </Tab.Navigator>
   );
@@ -59,7 +69,9 @@ export default function App() {
         <Stack.Screen name='Main' component={MainContainer} options={{ headerShown: false }} />
         <Stack.Screen name='Details' component={DetailsScreen} />
         <Stack.Screen name='EpisodeList' component={EpisodeScreen} />
-        <Stack.Screen name='VideoScreen' component={VideoScreen} />
+        <Stack.Screen name='VideoScreen' component={VideoScreen} options={{
+            headerShown: false, // Hide the top status bar with back arrow
+          }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

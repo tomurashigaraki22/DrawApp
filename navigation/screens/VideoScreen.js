@@ -1,20 +1,23 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
-import VideoPlayer from 'expo-fullscreen-video-player';
+import { Video, ResizeMode } from 'expo-av';
 
-export default function App({route}) {
+export default function App({ route }) {
   const { params3 } = route.params;
+  const video = React.useRef(null);
 
   return (
-    <View style={styles.container}>      
-       <VideoPlayer
-          source={{ uri: params3 }}
-          resizeMode="cover"
-          shouldPlay
-          fullscreenMode = "LANDSCAPE"
-          useNativeControls
-          style={{ width: Dimensions.get('window').height, height: Dimensions.get('window').width, transform: [{ rotate: '90deg' }] }}
-        />
+    <View style={styles.container}>
+      <Video
+        ref={video}
+        style={styles.video}
+        source={{
+          uri: params3,
+        }}
+        useNativeControls
+        resizeMode={ResizeMode.CONTAIN}
+        isLooping
+      />
     </View>
   );
 }
@@ -22,8 +25,15 @@ export default function App({route}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  video: {
+    width: Dimensions.get('window').height,
+    height: Dimensions.get('window').width,
+    transform: [{ rotate: '90deg' }],
+  },
+  buttons: {
+    marginTop: 16,
   },
 });

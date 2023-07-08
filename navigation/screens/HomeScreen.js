@@ -55,13 +55,14 @@ function HomeScreen() {
           fontSize: 16,
           fontWeight: 'bold',
           marginBottom: 4,
+          color: 'black'
         },
         search_b: {
           fontSize: 30,
         },
         releaseDate: {
           fontSize: 14,
-          color: 'gray',
+          color: 'black',
         },
         image: {
           width: '100%',

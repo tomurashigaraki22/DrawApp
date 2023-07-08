@@ -72,10 +72,10 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     paddingHorizontal: 10,
-    marginBottom: 10,
     borderRadius: 20,
-    width: '90%',
-    marginLeft: 20,
+    marginTop: 20,
+    width: '99%',
+    marginLeft: 2,
   },
   errorMessage: {
     color: 'red',
