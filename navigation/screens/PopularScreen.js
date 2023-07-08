@@ -4,13 +4,13 @@ import { StyleSheet, Image, FlatList } from 'react-native';
 import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-function HomeScreen() {
+function PopularScreen() {
     const [animeList, setAnimeList] = useState([]);
     const navigation = useNavigation();
 
 
     useEffect(() => {
-        fetch("https://webdis-d3bs.onrender.com/recent-release")
+        fetch("https://webdis-d3bs.onrender.com/popular")
         .then((response) => response.json())
         .then((animeList) => {
             setAnimeList(animeList);
@@ -79,4 +79,5 @@ function HomeScreen() {
       });
       
 
-export default HomeScreen;
+export default PopularScreen;
+
