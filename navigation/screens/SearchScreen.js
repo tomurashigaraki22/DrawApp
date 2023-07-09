@@ -1,17 +1,18 @@
-import React from 'react';
-import { TextInput, StyleSheet, View, Image, Text, FlatList, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { TextInput, StyleSheet, View, Image, Text, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
 
 function SearchScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const [animeList, setAnimeList] = useState([]);
   const [searchError, setSearchError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
 
   const handleSearch = () => {
     console.log('Search Query:', searchQuery);
-    fetch("https://webdis-d3bs.onrender.com/search?keyw="+searchQuery)
+    setIsLoading(true);
+    fetch("https://webdis-d3bs.onrender.com/search?keyw=" + searchQuery)
       .then((response) => response.json())
       .then((animeList) => {
         if (animeList.length > 0) {
@@ -21,6 +22,7 @@ function SearchScreen() {
           setAnimeList([]);
           setSearchError(true);
         }
+        setIsLoading(false);
       });
   };
 
@@ -28,9 +30,6 @@ function SearchScreen() {
     console.log('Pressed');
     navigation.navigate('Details', { title: animeId });
   };
-  
-  
-  
 
   const renderItem = ({ item }) => (
     <View style={styles.container}>
@@ -41,8 +40,6 @@ function SearchScreen() {
       <Text style={styles.releaseDate}>{item.episodeNum}</Text>
     </View>
   );
-  
-  
 
   return (
     <View>
@@ -53,27 +50,32 @@ function SearchScreen() {
         onChangeText={text => setSearchQuery(text)}
         onSubmitEditing={handleSearch}
       />
-      {searchError && (
-        <Text style={styles.errorMessage}>No anime found for &quot;{searchQuery}&quot;</Text>
+      {isLoading ? (
+        <ActivityIndicator size="large" color="blue" />
+      ) : (
+        <>
+          {searchError && (
+            <Text style={styles.errorMessage}>No anime found for &quot;{searchQuery}&quot;</Text>
+          )}
+          <FlatList
+            data={animeList}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.animeTitle.toString()}
+          />
+        </>
       )}
-
-      <FlatList
-        data={animeList}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.animeTitle.toString()}
-      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   input: {
-    height: 40,
+    height: 45,
     borderColor: 'gray',
     borderWidth: 1,
     paddingHorizontal: 10,
     borderRadius: 20,
-    marginTop: 20,
+    marginTop: 15,
     width: '99%',
     marginLeft: 2,
   },
