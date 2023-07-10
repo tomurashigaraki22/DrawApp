@@ -7,6 +7,7 @@ const EpisodeListScreen = () => {
   const navigation = useNavigation();
   const { totalEpisodes } = route.params;
   const { param2 } = route.params;
+  const { params3 } = route.params;
 
   const episodeList = Array.from({ length: totalEpisodes }, (_, index) => index + 1);
   const screenWidth = Dimensions.get('window').width;
@@ -22,7 +23,7 @@ const EpisodeListScreen = () => {
         throw new Error('Network response was not OK');
       }
       const animelist = await response.json();
-  
+
       if (animelist && animelist.sources) {
         // Find the URL with 720p quality
         const url720p = animelist.sources.find((source) => source.quality === '720p')?.url;
@@ -35,7 +36,7 @@ const EpisodeListScreen = () => {
       } else {
         console.log('Invalid animelist data');
       }
-  
+
       console.log(episodeNumber);
     } catch (error) {
       console.log('Fetch error:', error);
@@ -43,8 +44,6 @@ const EpisodeListScreen = () => {
     }
     console.log('Chill');
   };
-  
-  
 
   const renderEpisodeButton = ({ item }) => (
     <TouchableOpacity style={[styles.button, { width: buttonWidth }]} onPress={() => handleEpisodePress(item)}>
@@ -54,6 +53,9 @@ const EpisodeListScreen = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>{params3}</Text>
+      </View>
       <FlatList
         data={episodeList}
         keyExtractor={(item, index) => index.toString()}
@@ -69,20 +71,33 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    backgroundColor: '#000', // Set background color to black
+  },
+  headerText: {
+    fontSize: 27,
+    fontWeight: 'bold',
+    color: '#fff', // Set text color to white
   },
   contentContainer: {
     alignItems: 'center',
   },
   button: {
-    backgroundColor: 'blue',
+    backgroundColor: '#D81F26', // Set button background color to red
     paddingVertical: 10,
     borderRadius: 5,
     margin: 5,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center', // Center the content horizontally
+    marginBottom: 16,
+    marginTop: 10,
+  },
   buttonText: {
-    color: 'white',
+    color: '#fff', // Set button text color to white
     fontSize: 16,
     fontWeight: 'bold',
   },

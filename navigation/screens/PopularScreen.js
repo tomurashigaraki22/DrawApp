@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, FlatList, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 
 function PopularScreen() {
   const [animeList, setAnimeList] = useState([]);
@@ -37,13 +38,19 @@ function PopularScreen() {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <Ionicons name="tv" size={24} color="#fff" style={styles.headerIcon} />
+        <Text style={styles.headerText}>Popular</Text>
+      </View>
       {isLoading ? (
-        <ActivityIndicator size="large" color="blue" />
+        <ActivityIndicator size="large" color="#D81F26" />
       ) : (
         <FlatList
           data={animeList}
           renderItem={renderItem}
           keyExtractor={(item) => item.animeTitle.toString()}
+          numColumns={2} // Display items in two columns
+          contentContainerStyle={styles.contentContainer} // Add spacing between items
         />
       )}
     </View>
@@ -54,15 +61,37 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    backgroundColor: '#000', // Set background color to black
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center', // Center the content horizontally
+    marginBottom: 16,
+    marginTop: 10,
+  },
+  headerText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginLeft: 8,
+    color: '#fff', // Set text color to white
+  },
+  headerIcon: {
+    marginRight: 8,
+  },
+  contentContainer: {
+    justifyContent: 'space-between', // Add space between items
+    paddingBottom: 16, // Add bottom padding for spacing between items
   },
   title: {
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 4,
+    color: '#fff', // Set text color to white
   },
   releaseDate: {
     fontSize: 14,
-    color: 'gray',
+    color: '#fff', // Set text color to white
   },
   image: {
     width: '100%',

@@ -10,10 +10,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 import PopularScreen from './screens/PopularScreen';
 import EpisodeScreen from './screens/EpList';
 import VideoScreen from './screens/VideoScreen';
+import DiscoverMovie from './screens/DiscoverMovie';
 
-const homeName = 'Home';
+const homeName = 'Animiwa';
 const searchName = 'Search';
 const popName = 'Popular';
+const disName = 'Discover Movies';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -33,31 +35,39 @@ function MainContainer() {
             iconName = focused ? 'search' : 'search-outline';
           } else if (rn === popName) {
             iconName = focused ? 'tv' : 'tv-outline';
+          } else if (rn === disName) {
+            iconName = focused ? 'compass' : 'compass-outline';
           }
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarLabelStyle: {
-          textAlign: 'center',
+          fontSize: 12,
+          marginBottom: 5,
         },
-        headerStyle: {
-          backgroundColor: 'white',
-        },
-        headerTintColor: 'black', // Set the header text color to white
         tabBarStyle: {
-          backgroundColor: 'white',
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          elevation: 0,
+          borderTopWidth: 0,
+          backgroundColor: 'black',
+          height: 60,
         },
-        activeTintColor: 'tomato',
-        inactiveTintColor: 'grey',
-        labelStyle: { paddingBottom: 10, fontSize: 10 },
-        style: { padding: 20, height: 70 },
-  })}
->
-  {/* Tab.Screen definitions */}
-      <Tab.Screen name={homeName} component={HomeScreen} />
-      <Tab.Screen name={searchName} component={SearchScreen} options={{
-            headerShown: false, // Hide the top status bar with back arrow
-          }}/>
-      <Tab.Screen name={popName} component={PopularScreen} />
+        tabBarActiveTintColor: '#E50914',
+        tabBarInactiveTintColor: '#B3B3B3',
+        headerStyle: {
+          backgroundColor: 'black',
+        },
+        headerTintColor: 'white',
+        headerTitleAlign: 'center',
+      })}
+    >
+      {/* Tab.Screen definitions */}
+      <Tab.Screen name={homeName} component={HomeScreen} options={{ headerShown: false }} />
+      <Tab.Screen name={searchName} component={SearchScreen} options={{ headerShown: false }} />
+      <Tab.Screen name={popName} component={PopularScreen} options={{ headerShown: false }} />
+      <Tab.Screen name={disName} component={DiscoverMovie} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 }
@@ -67,11 +77,9 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name='Main' component={MainContainer} options={{ headerShown: false }} />
-        <Stack.Screen name='Details' component={DetailsScreen} />
-        <Stack.Screen name='EpisodeList' component={EpisodeScreen} />
-        <Stack.Screen name='VideoScreen' component={VideoScreen} options={{
-            headerShown: false, // Hide the top status bar with back arrow
-          }}/>
+        <Stack.Screen name='Details' component={DetailsScreen} options={{ headerShown: false }} />
+        <Stack.Screen name='EpisodeList' component={EpisodeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name='VideoScreen' component={VideoScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

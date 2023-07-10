@@ -42,16 +42,17 @@ function SearchScreen() {
   );
 
   return (
-    <View>
+    <View style={styles.container}>
       <TextInput
         style={styles.input}
         placeholder="Search..."
         value={searchQuery}
         onChangeText={text => setSearchQuery(text)}
         onSubmitEditing={handleSearch}
+        placeholderTextColor="#999"
       />
       {isLoading ? (
-        <ActivityIndicator size="large" color="blue" />
+        <ActivityIndicator size="large" color="#D81F26" />
       ) : (
         <>
           {searchError && (
@@ -61,6 +62,8 @@ function SearchScreen() {
             data={animeList}
             renderItem={renderItem}
             keyExtractor={(item) => item.animeTitle.toString()}
+            numColumns={1} // Display items in two columns
+            contentContainerStyle={styles.contentContainer} // Add spacing between items
           />
         </>
       )}
@@ -69,33 +72,39 @@ function SearchScreen() {
 }
 
 const styles = StyleSheet.create({
-  input: {
-    height: 45,
-    borderColor: 'gray',
-    borderWidth: 1,
-    paddingHorizontal: 10,
-    borderRadius: 20,
-    marginTop: 15,
-    width: '99%',
-    marginLeft: 2,
-  },
-  errorMessage: {
-    color: 'red',
-    marginTop: 10,
-    marginLeft: 20,
-  },
   container: {
     flex: 1,
     padding: 16,
+    backgroundColor: '#000', // Set background color to black
+  },
+  input: {
+    height: 45,
+    borderWidth: 1,
+    borderColor: '#333',
+    paddingHorizontal: 10,
+    borderRadius: 20,
+    marginTop: 15,
+    marginBottom: 10,
+    color: '#fff',
+  },
+  errorMessage: {
+    color: '#D81F26',
+    marginTop: 10,
+    marginLeft: 20,
+  },
+  contentContainer: {
+    justifyContent: 'space-between', // Add space between columns
+    paddingBottom: 16, // Add bottom padding for spacing between items
   },
   title: {
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 4,
+    color: '#fff', // Set text color to white
   },
   releaseDate: {
     fontSize: 14,
-    color: 'gray',
+    color: '#fff', // Set text color to white
   },
   image: {
     width: '100%',
@@ -106,3 +115,4 @@ const styles = StyleSheet.create({
 });
 
 export default SearchScreen;
+ 
