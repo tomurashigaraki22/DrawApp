@@ -40,4 +40,7 @@ Contributions to the Anime Streaming App are welcome! If you have any ideas, imp
 
 If you find any issues or have suggestions for new features, please open an issue on the project's GitHub repository.
 
+Contact:
++2348071273078 (Business Whatsapp Only)
+
 Disclaimer: The Anime Streaming App is an educational project and does not host any copyrighted content.
