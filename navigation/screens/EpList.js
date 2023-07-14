@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, TouchableOpacity, Text, Dimensions } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
 
 const EpisodeListScreen = () => {
   const route = useRoute();
@@ -53,6 +54,7 @@ const EpisodeListScreen = () => {
 
   return (
     <View style={styles.container}>
+      <StatusBar hidden />
       <View style={styles.header}>
         <Text style={styles.headerText}>{params3}</Text>
       </View>

@@ -3,6 +3,7 @@ import { StyleSheet, View, Dimensions, TouchableOpacity, Text } from 'react-nati
 import { Video, ResizeMode } from 'expo-av';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
 
 
 export default function VideoScreen({ route }) {
@@ -17,6 +18,7 @@ export default function VideoScreen({ route }) {
 
   return (
     <View style={styles.container}>
+      <StatusBar hidden />
       <Video
         ref={video}
         style={styles.video}

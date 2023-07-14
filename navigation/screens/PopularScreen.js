@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, FlatList, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import { StatusBar } from 'expo-status-bar';
 
 function PopularScreen() {
   const [animeList, setAnimeList] = useState([]);
@@ -38,6 +39,7 @@ function PopularScreen() {
 
   return (
     <View style={styles.container}>
+      <StatusBar hidden />
       <View style={styles.header}>
         <Ionicons name="tv" size={24} color="#fff" style={styles.headerIcon} />
         <Text style={styles.headerText}>Popular</Text>

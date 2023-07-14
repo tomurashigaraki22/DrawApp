@@ -4,6 +4,7 @@ import { StyleSheet, Image, FlatList } from 'react-native';
 import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import { StatusBar } from 'expo-status-bar';
 
 function HomeScreen() {
   const [animeList, setAnimeList] = useState([]);
@@ -41,6 +42,7 @@ function HomeScreen() {
 
   return (
     <View style={styles.container}>
+      <StatusBar hidden />
       <View style={styles.header}>
         <Ionicons name="infinite" size={30} color="red" style={styles.headerIconL} />
         <Text style={styles.headerText}>Animiwa</Text>

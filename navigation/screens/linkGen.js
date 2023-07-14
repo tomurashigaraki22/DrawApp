@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { ANIME } from "@consumet/extensions";
-
+import { StatusBar } from 'expo-status-bar';
 
 function LinkGen({ route }) {
     const { params2 } = route.params;
 
     return (
         <View style={styles.container}>
+            <StatusBar hidden />
             <View style={styles.header}>
                 <Ionicons name="infinite" size={30} color="red" style={styles.headerIcon} />
             </View>

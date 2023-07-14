@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
 
 const DetailsScreen = ({ route }) => {
   const { title } = route.params;
@@ -56,6 +57,7 @@ const DetailsScreen = ({ route }) => {
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContainer}>
       <View style={styles.container}>
+        <StatusBar hidden />
         <Image source={{ uri: animeList.animeImg }} style={styles.image} />
         <Text style={styles.title}>{animeList.animeTitle}</Text>
         <Text style={styles.description}>{animeList.synopsis}</Text>

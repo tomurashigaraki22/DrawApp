@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TextInput, StyleSheet, View, Image, Text, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
 
 function SearchScreen() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -43,6 +44,7 @@ function SearchScreen() {
 
   return (
     <View style={styles.container}>
+      <StatusBar hidden />
       <TextInput
         style={styles.input}
         placeholder="Search..."
