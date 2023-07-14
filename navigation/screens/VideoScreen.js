@@ -1,10 +1,19 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions, TouchableOpacity, Text } from 'react-native';
 import { Video, ResizeMode } from 'expo-av';
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
-export default function App({ route }) {
+
+export default function VideoScreen({ route }) {
   const { params3 } = route.params;
   const video = React.useRef(null);
+  const navigation = useNavigation();
+
+  const handleDownload = () => {
+    console.log('Not done....')
+    navigation.navigate('LinkGen', { params2: params3 })
+  }
 
   return (
     <View style={styles.container}>
@@ -18,6 +27,9 @@ export default function App({ route }) {
         resizeMode={ResizeMode.CONTAIN}
         isLooping
       />
+      <TouchableOpacity onPress={handleDownload} style={styles.downloadButton}>
+        <Ionicons name='download' size={30} color='red' />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -27,14 +39,24 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: 'black',
   },
   video: {
     width: Dimensions.get('window').height,
     height: Dimensions.get('window').width,
     transform: [{ rotate: '90deg' }],
   },
-  buttons: {
-    marginTop: 16,
+  downloadButton: {
+    position: 'absolute',
+    bottom: 16,
+    right: 16,
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    borderRadius: 24,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
   },
 });

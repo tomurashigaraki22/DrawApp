@@ -29,7 +29,7 @@ const EpisodeListScreen = () => {
         const url720p = animelist.sources.find((source) => source.quality === '720p')?.url;
         if (url720p) {
           console.log('720p URL:', url720p);
-          navigation.navigate('VideoScreen', { params3: url720p });
+          navigation.navigate('VideoScreen', { params3: url720p, params7: episodeNumber, param6: param2 });
         } else {
           console.log('No 720p URL found');
         }

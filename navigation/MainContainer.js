@@ -11,6 +11,7 @@ import PopularScreen from './screens/PopularScreen';
 import EpisodeScreen from './screens/EpList';
 import VideoScreen from './screens/VideoScreen';
 import DiscoverMovie from './screens/DiscoverMovie';
+import LinkGen from './screens/linkGen';
 
 const homeName = 'Animiwa';
 const searchName = 'Search';
@@ -80,6 +81,7 @@ export default function App() {
         <Stack.Screen name='Details' component={DetailsScreen} options={{ headerShown: false }} />
         <Stack.Screen name='EpisodeList' component={EpisodeScreen} options={{ headerShown: false }} />
         <Stack.Screen name='VideoScreen' component={VideoScreen} options={{ headerShown: false }} />
+        <Stack.Screen name='LinkGen' component={LinkGen} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
